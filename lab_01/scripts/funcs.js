@@ -1,9 +1,12 @@
-function dot(ctx, colour, x, y)
+function dot(ctx, color, x, y)
 {
-    //ctx.translate(0.5, 0.5);
-    ctx.fillStyle = colour;
-    console.log(x, y);
-    ctx.fillRect(x, y, 1, 1);
+    ctx.beginPath ();
+    ctx.arc (x, y, 2, 0, Math.PI * 2, false);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "black";
+    ctx.stroke();
 }
 
 function getRndColor() {

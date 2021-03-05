@@ -21,7 +21,7 @@ function getCursorPosition(ctx, canvas, event)
     return[x, y];
 }
 
-function main(dots_counter, ctx)
+function draw_on_dots(dots_counter, ctx)
 {
     if (((dots_counter % 3) == 0) && (dots_counter != 0))
     {
@@ -37,7 +37,7 @@ function on_click_func(ctx, canvas, e)
     push_coords(coords[0], coords[1], dots_counter);
     dot(ctx, getRndColor(), dots[dots_counter].x, dots[dots_counter].y);
     dots_counter += 1;
-    main(dots_counter, ctx);
+    draw_on_dots(dots_counter, ctx);
 }
 
 canvas.addEventListener('mousedown', function(e) {
