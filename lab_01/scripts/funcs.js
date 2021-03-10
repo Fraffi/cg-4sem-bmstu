@@ -28,4 +28,14 @@ function draw_tri(ctx, x1, y1, x2, y2, x3, y3)
     ctx.stroke();
 }
 
-export {dot, draw_tri, getRndColor};
+function draw_on_dots(dots_counter, ctx, dots)
+{
+    if (((dots_counter % 3) === 0) && (dots_counter !== 0))
+    {
+        draw_tri(ctx, dots[dots_counter - 3].x, dots[dots_counter - 3].y,
+            dots[dots_counter - 2].x, dots[dots_counter - 2].y,
+            dots[dots_counter - 1].x, dots[dots_counter - 1].y);
+    }
+}
+
+export {dot, draw_on_dots, getRndColor};

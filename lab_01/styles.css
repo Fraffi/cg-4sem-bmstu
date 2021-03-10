@@ -1,3 +1,54 @@
-#canvas {
-    border: 6px solid #483D8B;
+.canvas {
+    border: 5px solid #483D8B;
+    margin-top: 10px;
+}
+
+.page-header{
+    margin-bottom: 40px;
+}
+
+.task-button{
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px 15px 15px 15px;
+    outline: 0;
+    position: absolute;
+    right: -100px;
+    top: 5px;
+}
+
+.task-button:hover {
+    color: #ffffff;
+    background-color: #483D8B;
+}
+
+.task-menu{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #483D8B;
+    transition: 0.5s;
+    transform: translateX(-100%);
+}
+
+.task{
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    width: 100%;
+    height: 100%;
+    font: 1.2em "Fira Sans", sans-serif;
+    color: #483D8B;
+    padding: 10px;
+}
+
+.task_show{
+    transform: translateX(0%);
 }

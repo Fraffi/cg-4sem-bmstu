@@ -1,4 +1,4 @@
-import {dot, draw_tri, getRndColor} from './funcs.js';
+import {dot, draw_on_dots, getRndColor} from './funcs.js';
 
 let dots = [];
 let dots_counter = 0;
@@ -21,25 +21,25 @@ function getCursorPosition(ctx, canvas, event)
     return[x, y];
 }
 
-function draw_on_dots(dots_counter, ctx)
-{
-    if (((dots_counter % 3) == 0) && (dots_counter != 0))
-    {
-        draw_tri(ctx, dots[dots_counter - 3].x, dots[dots_counter - 3].y,
-            dots[dots_counter - 2].x, dots[dots_counter - 2].y,
-            dots[dots_counter - 1].x, dots[dots_counter - 1].y);
-    }
-}
-
 function on_click_func(ctx, canvas, e)
 {
     let coords = getCursorPosition(ctx, canvas, e);
     push_coords(coords[0], coords[1], dots_counter);
     dot(ctx, getRndColor(), dots[dots_counter].x, dots[dots_counter].y);
     dots_counter += 1;
-    draw_on_dots(dots_counter, ctx);
+    draw_on_dots(dots_counter, ctx, dots);
 }
 
-canvas.addEventListener('mousedown', function(e) {
-    on_click_func(ctx, canvas, e);
-})
+canvas.addEventListener('mousedown', function(evt) {
+    on_click_func(ctx, canvas, evt);
+});
+
+$('.task-button').click(function(evt) {
+  evt.preventDefault();
+  $('.task-menu').toggleClass('task_show');
+});
+
+$('.task').click(function(evt) {
+    evt.preventDefault();
+    $('.task-menu').removeClass('task_show');
+});

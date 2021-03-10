@@ -3,9 +3,21 @@
         <title>№1 Лабораторная работа КГ</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css" type="text/css"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <canvas id="canvas" height="550" width="1100"></canvas>
+    <body class = "lab">
+        <header class="page-header">
+            <div class="task-menu">
+                <button class="task-button" type="button">☆ Task!</button>
+                <nav class="task">Построить два треугольника с вершинами в заданном множестве точек на
+                    плоскости так, чтобы первый треугольник лежал строго внутри второго, и они были
+                    минимального возможного размера.</nav>
+            </div>
+        </header>
+        <main class="inner-main">
+            <canvas class="canvas" height="550" width="1100"></canvas>
+        </main>
     </body>
 
     <script type="module" src="./scripts/funcs.js"></script>
