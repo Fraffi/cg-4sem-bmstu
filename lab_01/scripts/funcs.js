@@ -7,6 +7,7 @@ function dot(ctx, color, x, y)
     ctx.lineWidth = 1;
     ctx.strokeStyle = "black";
     ctx.stroke();
+    return color;
 }
 
 function getRndColor() {

@@ -48,3 +48,27 @@
 .task_show{
     transform: translateX(0%);
 }
+
+.coordinates-buttons
+{
+    position: fixed;
+    border: 1px solid #483D8B;
+    height: 558px;
+    left: 1112px;
+    top: 53px;
+    width: 382px;
+}
+
+.coordinates-buttons BUTTON {
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 15px 15px 15px 15px;
+    outline: 0;
+}
+
+.coordinates-buttons BUTTON:hover {
+    color: #ffffff;
+    background-color: #483D8B;
+}

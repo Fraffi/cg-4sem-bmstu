@@ -40,13 +40,22 @@ function getCursorPosition(ctx, canvas, event)
     return[x, y];
 }
 
+function new_btn(x, y, color)
+{
+    let new_btn = document.createElement('button');
+    let co_btn = document.querySelector('.coordinates-buttons');
+    new_btn.innerText = 'X =' + x + ', ' + 'Y = ' + y;
+    co_btn.appendChild(new_btn);
+}
+
 function on_click_func(ctx, canvas, evt)
 {
     let coords = getCursorPosition(ctx, canvas, evt);
     let in_flag = push_coords(coords[0], coords[1], dots_counter);
     if (in_flag === 0)
     {
-        dot(ctx, getRndColor(), dots[dots_counter].x, dots[dots_counter].y);
+        let color = dot(ctx, getRndColor(), dots[dots_counter].x, dots[dots_counter].y);
+        new_btn(dots[dots_counter].x, dots[dots_counter].y, color);
         dots_counter += 1;
         draw_on_dots(dots_counter, ctx, dots);
     }
