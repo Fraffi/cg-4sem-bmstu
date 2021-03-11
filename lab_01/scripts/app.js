@@ -1,7 +1,6 @@
 import {dot, draw_on_dots, getRndColor} from './funcs.js';
 
 let dots = [];
-let dots_counter = 0;
 
 function check_in_arr(x, y, arr)
 {
@@ -13,17 +12,21 @@ function check_in_arr(x, y, arr)
             in_flag = 1;
         }
     }
+    if ((x < 0) || (y < 0))
+    {
+        in_flag = 1;
+    }
     return in_flag;
 }
 
-function push_coords(x, y, i)
+function push_coords(x, y, dots_counter)
 {
     let in_flag = check_in_arr(x, y, dots);
     if (in_flag === 0)
     {
-        dots[i] = {};
-        dots[i].x = x;
-        dots[i].y = y;
+        dots[dots_counter] = {};
+        dots[dots_counter].x = x;
+        dots[dots_counter].y = y;
     }
     return in_flag;
 }
@@ -40,24 +43,27 @@ function getCursorPosition(ctx, canvas, event)
     return[x, y];
 }
 
-function new_btn(x, y, color)
+function new_btn(x, y)
 {
     let new_btn = document.createElement('button');
+    new_btn.setAttribute('id',x + '-' + y);
     let co_btn = document.querySelector('.coordinates-buttons');
-    new_btn.innerText = 'X =' + x + ', ' + 'Y = ' + y;
+    new_btn.innerText = 'X = ' + x + ', ' + 'Y = ' + y;
+    new_btn.addEventListener('click', function() {
+        on_click_coords_b(new_btn.id, dots);
+    });
     co_btn.appendChild(new_btn);
 }
 
 function on_click_func(ctx, canvas, evt)
 {
     let coords = getCursorPosition(ctx, canvas, evt);
-    let in_flag = push_coords(coords[0], coords[1], dots_counter);
+    let in_flag = push_coords(coords[0], coords[1], dots.length);
     if (in_flag === 0)
     {
-        let color = dot(ctx, getRndColor(), dots[dots_counter].x, dots[dots_counter].y);
-        new_btn(dots[dots_counter].x, dots[dots_counter].y, color);
-        dots_counter += 1;
-        draw_on_dots(dots_counter, ctx, dots);
+        dot(ctx, getRndColor(), dots[dots.length - 1].x, dots[dots.length - 1].y);
+        new_btn(dots[dots.length - 1].x, dots[dots.length - 1].y);
+        draw_on_dots(dots.length, ctx, dots);
     }
 }
 
@@ -74,3 +80,14 @@ $('.task').click(function(evt) {
     evt.preventDefault();
     $('.task-menu').removeClass('task_show');
 });
+
+function on_click_coords_b(name){
+    for (let i = 0; i < dots.length; i++)
+    {
+        if (name === dots[i].x + '-' + dots[i].y)
+        {
+            dots.splice(i, 1);
+        }
+    }
+    document.getElementById(name).remove();
+}

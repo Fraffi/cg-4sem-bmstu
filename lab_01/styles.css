@@ -13,11 +13,13 @@
     position: absolute;
     right: -100px;
     top: 5px;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .task-button:hover {
     color: #ffffff;
-    background-color: #483D8B;
+    box-shadow: 0 0 40px 40px #483D8B inset;
 }
 
 .task-menu{
@@ -54,21 +56,30 @@
     position: fixed;
     border: 1px solid #483D8B;
     height: 558px;
-    left: 1112px;
+    left: 1288px;
     top: 53px;
-    width: 382px;
+    width: 206px;
+    overflow-y: scroll;
 }
 
-.coordinates-buttons BUTTON {
+.coordinates-buttons BUTTON{
     color: #483D8B;
     border: 1px solid #483D8B;
-    font-size: 13px;
+    width: 100%;
+    font-size: 20px;
     padding: 5px 10px;
     border-radius: 15px 15px 15px 15px;
     outline: 0;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .coordinates-buttons BUTTON:hover {
     color: #ffffff;
+    box-shadow: 0 0 40px 40px #483D8B inset;
+}
+
+.coordinates-buttons BUTTON:focus {
+    color: #FFF0F5;
     background-color: #483D8B;
 }
