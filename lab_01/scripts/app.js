@@ -94,29 +94,32 @@ function on_click_coords_b_del(ctx, name) {
     document.getElementById(name).remove();
 }
 
-/*function on_click_coords_b_zoom(ctx, name, x, y)
+/*function on_click_coords_b_zoom(ctx, name)
 {
+    let x, y;
     for (let i = 0; i < dots.length; i++)
     {
         if (name === dots[i].x + '-' + dots[i].y)
         {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            dots.splice(i, 1);
-            redraw_dots(ctx, dots);
-            redraw_tri(ctx, dots);
+            x = dots[i].x;
+            y = dots[i].y;
         }
     }
     dot(ctx, x, y, 4, 'red', 'green');
 }*/
 
 function on_click_coords_b(ctx, name) {
-    if ($('.coordinates-buttons').hasClass('to-delete'))
-    {
+    let coords = $('.coordinates-buttons');
+    if (coords.hasClass('to-delete')) {
         on_click_coords_b_del(ctx, name);
     }
-    /*else
+    /*if (coords.is(":focus"))
     {
-        on_click_coords_b_zoom(ctx, name)
+        on_click_coords_b_zoom(ctx, name);
+    }
+    else
+    {
+        on_out_coordinates_button(ctx, name);
     }*/
 }
 
@@ -124,3 +127,17 @@ $('.rem-button').click(function() {
     $('.rem-button').toggleClass('rem-button-active');
     $('.coordinates-buttons').toggleClass('to-delete');
 });
+
+/*function on_out_coordinates_button(ctx, name)
+{
+    $(document).click(function(e){
+        console.log(e.target.id);
+        if ( $(e.target).find(name)) {
+            on_click_coords_b_zoom(ctx, name);
+            return;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        redraw_dots(ctx, dots);
+        redraw_tri(ctx, dots);
+    });
+}*/
