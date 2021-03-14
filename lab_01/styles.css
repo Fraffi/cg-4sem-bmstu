@@ -7,7 +7,7 @@
     color: #483D8B;
     border: 1px solid #483D8B;
     font-size: 20px;
-    padding: 5px 10px;
+    padding: 5px 8px;
     border-radius: 5px 15px 15px 15px;
     outline: 0;
     position: absolute;
@@ -82,4 +82,38 @@
 .coordinates-buttons BUTTON:focus {
     color: #FFF0F5;
     background-color: #483D8B;
+}
+
+.rem-button {
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 15px 5px 15px 15px;
+    outline: 0;
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.rem-button:hover {
+    color: #ffffff;
+    box-shadow: 0 0 40px 40px #483D8B inset;
+}
+
+.rem-button-active {
+    color: #ff0000;
+    background-color: #483D8B;
+}
+
+.rem-button-active:hover {
+    color: #ff0000;
+    box-shadow: 0 0 40px 40px #483D8B inset;
+}
+
+.to-delete BUTTON:hover {
+    color: #ff0000;
+    box-shadow: 0 0 40px 40px #483D8B inset;
 }

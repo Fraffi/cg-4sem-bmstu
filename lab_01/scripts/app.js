@@ -71,22 +71,20 @@ canvas.addEventListener('click', function(evt) {
     on_click_func(ctx, canvas, evt);
 });
 
-$('.task-button').click(function(evt) {
-  evt.preventDefault();
-  $('.task-menu').toggleClass('task_show');
+$(document).click(function(e){
+    let task = $('.task-menu');
+    if ( $(e.target).closest('.task-button').length) {
+        task.toggleClass('task_show');
+        return;
+    }
+    task.removeClass('task_show');
 });
 
-$('.task').click(function(evt) {
-    evt.preventDefault();
-    $('.task-menu').removeClass('task_show');
-});
-
-function on_click_coords_b(ctx, name){
+function on_click_coords_b_del(ctx, name) {
     for (let i = 0; i < dots.length; i++)
     {
         if (name === dots[i].x + '-' + dots[i].y)
         {
-            //clear_dot(ctx, dots[i].x, dots[i].y)
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             dots.splice(i, 1);
             redraw_dots(ctx, dots);
@@ -95,3 +93,34 @@ function on_click_coords_b(ctx, name){
     }
     document.getElementById(name).remove();
 }
+
+/*function on_click_coords_b_zoom(ctx, name, x, y)
+{
+    for (let i = 0; i < dots.length; i++)
+    {
+        if (name === dots[i].x + '-' + dots[i].y)
+        {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.splice(i, 1);
+            redraw_dots(ctx, dots);
+            redraw_tri(ctx, dots);
+        }
+    }
+    dot(ctx, x, y, 4, 'red', 'green');
+}*/
+
+function on_click_coords_b(ctx, name) {
+    if ($('.coordinates-buttons').hasClass('to-delete'))
+    {
+        on_click_coords_b_del(ctx, name);
+    }
+    /*else
+    {
+        on_click_coords_b_zoom(ctx, name)
+    }*/
+}
+
+$('.rem-button').click(function() {
+    $('.rem-button').toggleClass('rem-button-active');
+    $('.coordinates-buttons').toggleClass('to-delete');
+});
