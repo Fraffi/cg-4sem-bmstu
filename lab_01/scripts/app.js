@@ -1,4 +1,4 @@
-import {dot, draw_on_dots, getRndColor} from './funcs.js';
+import {dot, draw_on_dots, redraw_dots, redraw_tri} from './funcs.js';
 
 let dots = [];
 
@@ -43,14 +43,14 @@ function getCursorPosition(ctx, canvas, event)
     return[x, y];
 }
 
-function new_btn(x, y)
+function new_btn(ctx, x, y)
 {
     let new_btn = document.createElement('button');
     new_btn.setAttribute('id',x + '-' + y);
     let co_btn = document.querySelector('.coordinates-buttons');
     new_btn.innerText = 'X = ' + x + ', ' + 'Y = ' + y;
     new_btn.addEventListener('click', function() {
-        on_click_coords_b(new_btn.id, dots);
+        on_click_coords_b(ctx, new_btn.id);
     });
     co_btn.appendChild(new_btn);
 }
@@ -61,9 +61,9 @@ function on_click_func(ctx, canvas, evt)
     let in_flag = push_coords(coords[0], coords[1], dots.length);
     if (in_flag === 0)
     {
-        dot(ctx, getRndColor(), dots[dots.length - 1].x, dots[dots.length - 1].y);
-        new_btn(dots[dots.length - 1].x, dots[dots.length - 1].y);
-        draw_on_dots(dots.length, ctx, dots);
+        dot(ctx, dots[dots.length - 1].x, dots[dots.length - 1].y, 1, 'red', 'black');
+        new_btn(ctx, dots[dots.length - 1].x, dots[dots.length - 1].y);
+        draw_on_dots(ctx, dots, dots.length);
     }
 }
 
@@ -81,12 +81,16 @@ $('.task').click(function(evt) {
     $('.task-menu').removeClass('task_show');
 });
 
-function on_click_coords_b(name){
+function on_click_coords_b(ctx, name){
     for (let i = 0; i < dots.length; i++)
     {
         if (name === dots[i].x + '-' + dots[i].y)
         {
+            //clear_dot(ctx, dots[i].x, dots[i].y)
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             dots.splice(i, 1);
+            redraw_dots(ctx, dots);
+            redraw_tri(ctx, dots);
         }
     }
     document.getElementById(name).remove();
