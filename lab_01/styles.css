@@ -102,7 +102,7 @@
 .rem-button-active {
     color: #f03a17;
     background-color: #483D8B;
-    animation: sub-borders 0.125s 2 alternate;
+    animation: rem-borders 0.125s 2 alternate;
 }
 
 .rem-button-active:hover {
@@ -164,7 +164,7 @@
 
 @keyframes sub-borders {
     from {
-        border-radius: 15px 15px 15px 15px;
+        border-radius: 25px 25px 25px 25px;
         box-shadow: 0 0 40px 40px #483D8B inset;
     }
     to {
@@ -176,13 +176,9 @@
 
 @keyframes rem-borders {
     from {
-        border-radius: 15px 15px 15px 15px;
-        color: #f03a17;
-        box-shadow: 0 0 40px 40px #483D8B inset;
+        border-radius: 25px 25px 25px 25px;
     }
     to {
         border-radius: 10px 10px 10px 10px;
-        color: #f03a17;
-        box-shadow: 0 0 40px 40px #ffffff inset;
     }
 }
