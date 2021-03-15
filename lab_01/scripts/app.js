@@ -44,6 +44,23 @@ function getCursorPosition(ctx, canvas, event)
     return[x, y];
 }
 
+function add_new_dot_from_input()
+{
+    let in_flag = 0;
+    let x_c = Number(document.getElementById('coordinates-inputX').value);
+    let y_c = Number(document.getElementById('coordinates-inputY').value);
+    if ((Number.isFinite(x_c)) && (Number.isFinite(y_c)))
+    {
+        in_flag = push_coords(x_c, y_c, dots.length);
+        add_to_canvas(in_flag);
+    }
+    else
+    {
+        in_flag = 1;
+    }
+    return in_flag;
+}
+
 //BUTTONS
 //coordinates buttons functions
 function new_btn(ctx, x, y)
@@ -129,12 +146,31 @@ $('.sub-button').click(function() {
     })
 });
 
+document.querySelector('.sub-button').addEventListener('click', function(evt) {
+    let err_flag = add_new_dot_from_input();
+    if (err_flag === 0) {
+        $('.sub-button').removeClass('sub-button-active-error');
+    }
+    else{
+        $('.sub-button').addClass('sub-button-active-error').delay(250).queue(function () {
+            let sbt_a = $('.sub-button');
+            sbt_a.removeClass('sub-button-active-error');
+            sbt_a.dequeue();
+        })
+    }
+});
+
 
 //Canvas functions
 function on_click_func(ctx, canvas, evt)
 {
     let coords = getCursorPosition(ctx, canvas, evt);
     let in_flag = push_coords(coords[0], coords[1], dots.length);
+    add_to_canvas(in_flag);
+}
+
+function add_to_canvas(in_flag)
+{
     if (in_flag === 0)
     {
         dot(ctx, dots[dots.length - 1].x, dots[dots.length - 1].y, 1, 'red', 'black', 2);
