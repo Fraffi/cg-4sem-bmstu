@@ -125,3 +125,11 @@ $('.rem-button').click(function() {
     $('.rem-button').toggleClass('rem-button-active');
     $('.coordinates-buttons').toggleClass('to-delete');
 });
+
+$('.sub-button').click(function() {
+    $('.sub-button').addClass('sub-button-active').delay(250).queue(function () {
+        let sbt_a = $('.sub-button');
+        sbt_a.removeClass('sub-button-active');
+        sbt_a.dequeue();
+    })
+});

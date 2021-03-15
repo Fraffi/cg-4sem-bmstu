@@ -54,7 +54,7 @@ function draw_on_dots(ctx, dots, dots_counter)
     {
         draw_tri(ctx, dots[dots_counter - 3].x, dots[dots_counter - 3].y,
             dots[dots_counter - 2].x, dots[dots_counter - 2].y,
-            dots[dots_counter - 1].x, dots[dots_counter - 1].y, getRndColor());
+            dots[dots_counter - 1].x, dots[dots_counter - 1].y, '#483D8B');
     }
 }
 

@@ -14,11 +14,18 @@
                     плоскости так, чтобы первый треугольник лежал строго внутри второго, и они были
                     минимального возможного размера.</nav>
             </div>
-            <button class="rem-button" type="button">💀 Delete mode</button>
+            <button class="rem-button" type="button">❌ Delete mode</button>
         </header>
         <main class="inner-main">
             <canvas class="canvas" height="550" width="1270"></canvas>
             <div class="coordinates-buttons"></div>
+            <form>
+                <label for="coordinates-inputX"></label>
+                <label for="coordinates-inputY"></label>
+                <input type="text" id="coordinates-inputX" name="co-inp" placeholder=" X Coordinate.." class="coordinates-input">
+                <input type="text" id="coordinates-inputY" name="co-inp" placeholder=" Y Coordinate.." class="coordinates-input">
+                <button class="sub-button" type="button">Submit</button>
+            </form>
         </main>
     </body>
 

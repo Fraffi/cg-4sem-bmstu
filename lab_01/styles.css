@@ -89,10 +89,11 @@
     border: 1px solid #483D8B;
     font-size: 20px;
     padding: 5px 10px;
-    border-radius: 15px 5px 15px 15px;
+    border-radius: 15px 15px 15px 15px;
     outline: 0;
+    width: 192px;
     position: absolute;
-    right: 14px;
+    right: 15px;
     top: 5px;
     -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
@@ -104,16 +105,89 @@
 }
 
 .rem-button-active {
-    color: #ff0000;
+    color: #f03a17;
     background-color: #483D8B;
+    animation: sub-borders 0.125s 2 alternate;
 }
 
 .rem-button-active:hover {
-    color: #ff0000;
+    color: #f03a17;
     box-shadow: 0 0 40px 40px #483D8B inset;
 }
 
 .to-delete BUTTON:hover {
-    color: #ff0000;
+    color: #f03a17;
     box-shadow: 0 0 40px 40px #483D8B inset;
+}
+
+#coordinates-inputX{
+    position: absolute;
+    right: 15px;
+    top: 616px;
+}
+
+#coordinates-inputY{
+    position: absolute;
+    right: 15px;
+    top: 656px;
+}
+
+.coordinates-input{
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    font-size: 20px;
+    width: 192px;
+    padding: 5px 10px;
+    border-radius: 15px 15px 15px 15px;
+    outline: 0;
+}
+
+.sub-button{
+    position: absolute;
+    right: 15px;
+    top: 696px;
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    width: 191px;
+    font-size: 20px;
+    padding: 4px 10px;
+    border-radius: 15px 15px 15px 15px;
+    outline: 0;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.sub-button:hover {
+    color: #ffffff;
+    box-shadow: 0 0 40px 40px #483D8B inset;
+}
+
+.sub-button-active {
+    color: #ffffff;
+    animation: sub-borders 0.125s 2 alternate;
+}
+
+@keyframes sub-borders {
+    from {
+        border-radius: 15px 15px 15px 15px;
+        box-shadow: 0 0 40px 40px #483D8B inset;
+    }
+    to {
+        border-radius: 10px 10px 10px 10px;
+        color: #483D8B;
+        box-shadow: 0 0 40px 40px #ffffff inset;
+    }
+}
+
+@keyframes rem-borders {
+    from {
+        border-radius: 15px 15px 15px 15px;
+        color: #f03a17;
+        box-shadow: 0 0 40px 40px #483D8B inset;
+    }
+    to {
+        border-radius: 10px 10px 10px 10px;
+        color: #f03a17;
+        box-shadow: 0 0 40px 40px #ffffff inset;
+    }
 }
