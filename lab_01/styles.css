@@ -79,11 +79,6 @@
     box-shadow: 0 0 40px 40px #483D8B inset;
 }
 
-.coordinates-buttons BUTTON:focus {
-    color: #FFF0F5;
-    background-color: #483D8B;
-}
-
 .rem-button {
     color: #483D8B;
     border: 1px solid #483D8B;
