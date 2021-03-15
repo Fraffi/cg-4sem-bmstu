@@ -1,4 +1,4 @@
-import {dot, draw_on_dots, redraw_dots, redraw_tri} from './funcs.js';
+import {dot, draw_on_dots, reset_all} from './funcs.js';
 
 let dots = [];
 
@@ -52,6 +52,9 @@ function new_btn(ctx, x, y)
     new_btn.addEventListener('click', function() {
         on_click_coords_b(ctx, new_btn.id);
     });
+    new_btn.addEventListener('blur', function() {
+        reset_all(ctx, canvas, dots);
+    });
     co_btn.appendChild(new_btn);
 }
 
@@ -61,7 +64,7 @@ function on_click_func(ctx, canvas, evt)
     let in_flag = push_coords(coords[0], coords[1], dots.length);
     if (in_flag === 0)
     {
-        dot(ctx, dots[dots.length - 1].x, dots[dots.length - 1].y, 1, 'red', 'black');
+        dot(ctx, dots[dots.length - 1].x, dots[dots.length - 1].y, 1, 'red', 'black', 2);
         new_btn(ctx, dots[dots.length - 1].x, dots[dots.length - 1].y);
         draw_on_dots(ctx, dots, dots.length);
     }
@@ -85,16 +88,14 @@ function on_click_coords_b_del(ctx, name) {
     {
         if (name === dots[i].x + '-' + dots[i].y)
         {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
             dots.splice(i, 1);
-            redraw_dots(ctx, dots);
-            redraw_tri(ctx, dots);
+            reset_all(ctx, canvas, dots);
         }
     }
     document.getElementById(name).remove();
 }
 
-/*function on_click_coords_b_zoom(ctx, name)
+function on_click_coords_b_zoom(ctx, name)
 {
     let x, y;
     for (let i = 0; i < dots.length; i++)
@@ -105,39 +106,22 @@ function on_click_coords_b_del(ctx, name) {
             y = dots[i].y;
         }
     }
-    dot(ctx, x, y, 4, 'red', 'green');
-}*/
+    dot(ctx, x, y, 1, 'red', 'green', 5);
+}
 
 function on_click_coords_b(ctx, name) {
     let coords = $('.coordinates-buttons');
+    let btn = document.getElementById(name);
     if (coords.hasClass('to-delete')) {
         on_click_coords_b_del(ctx, name);
     }
-    /*if (coords.is(":focus"))
+    if (document.activeElement === btn)
     {
         on_click_coords_b_zoom(ctx, name);
     }
-    else
-    {
-        on_out_coordinates_button(ctx, name);
-    }*/
 }
 
 $('.rem-button').click(function() {
     $('.rem-button').toggleClass('rem-button-active');
     $('.coordinates-buttons').toggleClass('to-delete');
 });
-
-/*function on_out_coordinates_button(ctx, name)
-{
-    $(document).click(function(e){
-        console.log(e.target.id);
-        if ( $(e.target).find(name)) {
-            on_click_coords_b_zoom(ctx, name);
-            return;
-        }
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        redraw_dots(ctx, dots);
-        redraw_tri(ctx, dots);
-    });
-}*/

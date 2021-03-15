@@ -1,7 +1,7 @@
-function dot(ctx, x, y, width, color, s_color)
+function dot(ctx, x, y, width, color, s_color, rad)
 {
     ctx.beginPath ();
-    ctx.arc (x, y, 2, 0, Math.PI * 2, false);
+    ctx.arc (x, y, rad, 0, Math.PI * 2, false);
     ctx.fillStyle = color;
     ctx.fill();
     ctx.lineWidth = width;
@@ -9,16 +9,11 @@ function dot(ctx, x, y, width, color, s_color)
     ctx.stroke();
 }
 
-/*function clear_dot(ctx, x, y)
-{
-    dot(ctx, x, y, 3, 'white', 'white');
-}*/
-
 function redraw_dots(ctx, dots)
 {
     for (let i = 0; i < dots.length; i++)
     {
-        dot(ctx, dots[i].x, dots[i].y);
+        dot(ctx, dots[i].x, dots[i].y, 1, 'red', 'black', 2);
     }
 }
 
@@ -63,4 +58,11 @@ function draw_on_dots(ctx, dots, dots_counter)
     }
 }
 
-export {dot, draw_on_dots, getRndColor, redraw_dots, redraw_tri};
+function reset_all(ctx, canvas, dots)
+{
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    redraw_dots(ctx, dots);
+    redraw_tri(ctx, dots);
+}
+
+export {dot, draw_on_dots, getRndColor, reset_all};

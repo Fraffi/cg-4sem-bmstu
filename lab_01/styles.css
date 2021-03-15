@@ -92,7 +92,7 @@
     border-radius: 15px 5px 15px 15px;
     outline: 0;
     position: absolute;
-    right: 8px;
+    right: 14px;
     top: 5px;
     -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
