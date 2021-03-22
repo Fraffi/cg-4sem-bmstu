@@ -1,36 +1,8 @@
-import {dot, draw_on_dots, reset_all} from './funcs.js';
+import {dot, draw_on_dots, reset_all, push_coords} from './funcs.js';
 
 //Check, array functions and definitions
 let dots = [];
 
-function check_in_arr(x, y, arr)
-{
-    let in_flag = 0;
-    for (let i = 0; i < arr.length; i++)
-    {
-        if ((arr[i].x === x) && (arr[i].y === y))
-        {
-            in_flag = 1;
-        }
-    }
-    if ((x < 0) || (y < 0))
-    {
-        in_flag = 1;
-    }
-    return in_flag;
-}
-
-function push_coords(x, y, dots_counter)
-{
-    let in_flag = check_in_arr(x, y, dots);
-    if (in_flag === 0)
-    {
-        dots[dots_counter] = {};
-        dots[dots_counter].x = x;
-        dots[dots_counter].y = y;
-    }
-    return in_flag;
-}
 const canvas = document.querySelector('canvas')
 if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
@@ -51,7 +23,7 @@ function add_new_dot_from_input()
     let y_c = Number(document.getElementById('coordinates-inputY').value);
     if ((Number.isFinite(x_c)) && (Number.isFinite(y_c)))
     {
-        in_flag = push_coords(x_c, y_c, dots.length);
+        in_flag = push_coords(x_c, y_c, dots.length, dots);
         add_to_canvas(in_flag);
     }
     else
@@ -165,7 +137,7 @@ document.querySelector('.sub-button').addEventListener('click', function(evt) {
 function on_click_func(ctx, canvas, evt)
 {
     let coords = getCursorPosition(ctx, canvas, evt);
-    let in_flag = push_coords(coords[0], coords[1], dots.length);
+    let in_flag = push_coords(coords[0], coords[1], dots.length, dots);
     add_to_canvas(in_flag);
 }
 

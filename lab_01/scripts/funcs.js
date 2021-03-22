@@ -65,4 +65,33 @@ function reset_all(ctx, canvas, dots)
     redraw_tri(ctx, dots);
 }
 
-export {dot, draw_on_dots, getRndColor, reset_all};
+function check_in_arr(x, y, arr)
+{
+    let in_flag = 0;
+    for (let i = 0; i < arr.length; i++)
+    {
+        if ((arr[i].x === x) && (arr[i].y === y))
+        {
+            in_flag = 1;
+        }
+    }
+    if ((x < 0) || (y < 0))
+    {
+        in_flag = 1;
+    }
+    return in_flag;
+}
+
+function push_coords(x, y, dots_counter, arr)
+{
+    let in_flag = check_in_arr(x, y, arr);
+    if (in_flag === 0)
+    {
+        arr[dots_counter] = {};
+        arr[dots_counter].x = x;
+        arr[dots_counter].y = y;
+    }
+    return in_flag;
+}
+
+export {dot, draw_on_dots, getRndColor, reset_all, push_coords};
