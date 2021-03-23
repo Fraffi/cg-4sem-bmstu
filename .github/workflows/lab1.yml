@@ -3,7 +3,7 @@ name: CI
 on: push
 
 jobs:
-  Unit Testing:
+  Unit_Testing:
     # The type of runner that the job will run on
     runs-on: windows-latest
 
