@@ -81,14 +81,9 @@ function on_click_coords_b_zoom(ctx, name)
 
 function on_click_coords_b(ctx, name) {
     let coords = $('.coordinates-buttons');
-    //let btn = document.getElementById(name);
     if (coords.hasClass('to-delete')) {
         on_click_coords_b_del(ctx, name);
     }
-    /*if (document.activeElement === btn)
-    {
-        on_click_coords_b_zoom(ctx, name);
-    }*/
 }
 
 
