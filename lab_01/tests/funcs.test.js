@@ -1,7 +1,7 @@
 import {push_coords} from '../scripts/funcs.js';
 
-var array = [];
-var arr_len = 5
+let array = [];
+let arr_len = 5
 for (let i = 0; i < arr_len; i++)
     array[i] = {x: i, y: i + 1};
 

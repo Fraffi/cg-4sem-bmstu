@@ -1,4 +1,4 @@
-import {dot, draw_on_dots, reset_all, push_coords} from './funcs.js';
+import {dot, draw_on_dots, reset_all, push_coords, axes_drawing} from './funcs.js';
 
 //Check, array functions and definitions
 let dots = [];
@@ -7,6 +7,8 @@ const canvas = document.querySelector('canvas')
 if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
 }
+
+axes_drawing(ctx);
 
 function getCursorPosition(ctx, canvas, event)
 {

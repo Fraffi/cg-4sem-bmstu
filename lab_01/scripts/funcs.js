@@ -94,4 +94,9 @@ function push_coords(x, y, dots_counter, arr)
     return in_flag;
 }
 
-export {dot, draw_on_dots, getRndColor, reset_all, push_coords};
+function axes_drawing(ctx)
+{
+    ctx.translate(0, 0);
+}
+
+export {dot, draw_on_dots, getRndColor, reset_all, push_coords, axes_drawing};
