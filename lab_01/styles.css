@@ -79,37 +79,6 @@
     box-shadow: 0 0 40px 40px #483D8B inset;
 }
 
-.rem-button {
-    color: #483D8B;
-    border: 1px solid #483D8B;
-    font-size: 20px;
-    padding: 5px 10px;
-    border-radius: 15px 15px 15px 15px;
-    outline: 0;
-    width: 192px;
-    position: absolute;
-    right: 15px;
-    top: 5px;
-    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
-}
-
-.rem-button:hover {
-    color: #ffffff;
-    box-shadow: 0 0 40px 40px #483D8B inset;
-}
-
-.rem-button-active {
-    color: #f03a17;
-    background-color: #483D8B;
-    animation: rem-borders 0.125s 2 alternate;
-}
-
-.rem-button-active:hover {
-    color: #f03a17;
-    box-shadow: 0 0 40px 40px #483D8B inset;
-}
-
 .to-delete BUTTON:hover {
     color: #f03a17;
     box-shadow: 0 0 40px 40px #483D8B inset;
@@ -197,5 +166,70 @@
     }
     to {
         border-radius: 10px 10px 10px 10px;
+    }
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+label[for="removing-btn"] {
+    padding: 5px 0 5px 16px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    font-size: 20px;
+    border-radius: 15px 15px 15px 15px;
+    width: 175px;
+    height: 27px;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+label[for="removing-btn"]:hover{
+    color: #ffffff;
+    box-shadow: 0 0 40px 40px #483D8B inset;
+}
+
+label[for="removing-btn"]::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: -5px;
+    margin-right: 20px;
+    border-radius: 50%;
+    border: 1px solid #483D8B;
+}
+
+label[for="removing-btn"]:hover::before {
+    border: 1px solid #ffffff;
+}
+
+input[type="checkbox"]:checked + label[for="removing-btn"]::before{
+    animation: rem-animation 0.4s ease-in-out;
+    transform: scale(1);
+    content: '';
+    background-size: 100%;
+    background-image: url("./img/cross2.png")
+}
+
+input[type="checkbox"]:checked + label[for="removing-btn"]{
+    color: #f03a17;
+}
+
+@keyframes rem-animation {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
     }
 }

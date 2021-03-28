@@ -100,7 +100,6 @@ $(document).click(function(e){
 
 //Remove button
 $('.rem-button').click(function() {
-    $('.rem-button').toggleClass('rem-button-active');
     $('.coordinates-buttons').toggleClass('to-delete');
 });
 
