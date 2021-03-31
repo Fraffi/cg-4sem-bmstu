@@ -12,9 +12,11 @@ axes_drawing(ctx);
 
 function getCursorPosition(ctx, canvas, event)
 {
-    const rect = canvas.getBoundingClientRect();
+    /*const rect = canvas.getBoundingClientRect();
     const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    const y = event.clientY - rect.top;*/
+    const x = event.offsetX;
+    const y = event.offsetY;
     return[x, y];
 }
 
