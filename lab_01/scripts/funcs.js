@@ -91,10 +91,19 @@ function push_coords(x, y, dots_counter, arr)
     return in_flag;
 }
 
-/*function axes_drawing(tr_x, tr_y)
+function axes_drawing(ctx, tr_x, tr_y)
 {
-
-}*/
+    ctx.beginPath();
+    ctx.moveTo(tr_x, tr_y);
+    ctx.lineTo(tr_x, tr_y + 500 * 10);
+    ctx.lineTo(tr_x, -tr_y - 500 * 10);
+    ctx.lineTo(tr_x, tr_y);
+    ctx.lineTo(tr_x + 1200 * 10, tr_y);
+    ctx.lineTo(-tr_x - 1200 * 10, tr_y);
+    ctx.strokeStyle = '#483D8B';
+    ctx.closePath();
+    ctx.stroke();
+}
 
 function coords_translator(tr_x, tr_y, x, y)
 {
@@ -108,6 +117,7 @@ function axes_working(ctx, tr_x, tr_y)
 {
     ctx.translate(tr_x, tr_y);
     ctx.scale(1, -1);
+    axes_drawing(ctx, 0, 0);
 }
 
 export {dot, draw_on_dots, getRndColor, reset_all, push_coords, axes_working, coords_translator};
