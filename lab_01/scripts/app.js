@@ -1,4 +1,4 @@
-import {dot, draw_on_dots, reset_all, push_coords, axes_drawing} from './funcs.js';
+import {dot, draw_on_dots, reset_all, push_coords, axes_working, coords_translator} from './funcs.js';
 
 //Check, array functions and definitions
 let dots = [];
@@ -8,7 +8,12 @@ if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
 }
 
-axes_drawing(ctx);
+var tr_y = canvas.height / 2;
+var tr_x = canvas.width / 2;
+var state;
+
+axes_working(ctx, tr_x, tr_y);
+state = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
 function getCursorPosition(ctx, canvas, event)
 {
@@ -17,7 +22,8 @@ function getCursorPosition(ctx, canvas, event)
     const y = event.clientY - rect.top;*/
     const x = event.offsetX;
     const y = event.offsetY;
-    return[x, y];
+    let coords_d = coords_translator(tr_x, tr_y, x, y);
+    return[coords_d[0], coords_d[1]];
 }
 
 function add_new_dot_from_input()
@@ -52,7 +58,7 @@ function new_btn(ctx, x, y)
         on_click_coords_b_zoom(ctx, new_btn.id);
     });
     new_btn.addEventListener('mouseout', function() {
-        reset_all(ctx, canvas, dots);
+        reset_all(ctx, canvas, dots, state);
     });
     co_btn.appendChild(new_btn);
 }
@@ -63,7 +69,7 @@ function on_click_coords_b_del(ctx, name) {
         if (name === dots[i].x + '-' + dots[i].y)
         {
             dots.splice(i, 1);
-            reset_all(ctx, canvas, dots);
+            reset_all(ctx, canvas, dots, state);
         }
     }
     document.getElementById(name).remove();
