@@ -4,6 +4,14 @@
     cursor: crosshair;
 }
 
+.moving-canvas{
+    cursor: grab;
+}
+
+.moving-canvas-active{
+    cursor: grabbing;
+}
+
 .task-button{
     color: #483D8B;
     border: 1px solid #483D8B;
@@ -206,7 +214,7 @@ label[for="removing-btn"]:hover::before {
 }
 
 input[type="checkbox"]:checked + label[for="removing-btn"]::before{
-    animation: rem-animation 0.4s ease-in-out;
+    animation: scale-animation 0.4s ease-in-out;
     transform: scale(1);
     content: '';
     background-size: 100%;
@@ -217,7 +225,7 @@ input[type="checkbox"]:checked + label[for="removing-btn"]{
     color: #f03a17;
 }
 
-@keyframes rem-animation {
+@keyframes scale-animation {
     0% {
         transform: scale(0);
     }
@@ -227,4 +235,43 @@ input[type="checkbox"]:checked + label[for="removing-btn"]{
     100% {
         transform: scale(1);
     }
+}
+
+.moving-button {
+    padding: 5px 7px;
+    outline: 0;
+    position: absolute;
+    font-family: Arial, sans-serif;
+    cursor: grab;
+    color: #483D8B;
+    border: 1px solid #483D8B;
+    font-size: 14px;
+    border-radius: 15px 15px 15px 15px;
+    width: 39px;
+    height: 39px;
+    right: 215px;
+    top: 5px;
+    background-size: 100%;
+    background-image: url("./img/drag_hand.png");
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.moving-button:hover {
+    color: #ffffff;
+    background-size: 100%;
+    background-image: url("./img/drag_hand.png")
+}
+
+.moving-button-active {
+    color: #ffffff;
+    animation: scale-animation 0.4s ease-in-out;
+    background-size: 100%;
+    background-image: url("./img/drag_hand_active.png")
+}
+
+.moving-button-active:hover {
+    color: #ffffff;
+    background-size: 100%;
+    background-image: url("./img/drag_hand_active.png")
 }

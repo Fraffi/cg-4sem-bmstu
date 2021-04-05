@@ -8,8 +8,8 @@ if (canvas.getContext) {
     var ctx = canvas.getContext('2d');
 }
 
-var tr_y = canvas.height / 2;
-var tr_x = canvas.width / 2;
+var tr_y = canvas.height - 100;
+var tr_x = 100;
 var state;
 
 axes_working(ctx, tr_x, tr_y);
@@ -140,9 +140,12 @@ document.querySelector('.sub-button').addEventListener('click', function(evt) {
 //Canvas functions
 function on_click_func(ctx, canvas, evt)
 {
-    let coords = getCursorPosition(ctx, canvas, evt);
-    let in_flag = push_coords(coords[0], coords[1], dots.length, dots);
-    add_to_canvas(in_flag);
+    if(!(canvas.classList.contains('moving-canvas')))
+    {
+        let coords = getCursorPosition(ctx, canvas, evt);
+        let in_flag = push_coords(coords[0], coords[1], dots.length, dots);
+        add_to_canvas(in_flag);
+    }
 }
 
 function add_to_canvas(in_flag)
@@ -157,4 +160,31 @@ function add_to_canvas(in_flag)
 
 canvas.addEventListener('click', function(evt) {
     on_click_func(ctx, canvas, evt);
+});
+
+canvas.addEventListener('mousedown', function(evt) {
+    if (canvas.classList.contains('moving-canvas'))
+    {
+        $('.canvas').addClass('moving-canvas-active');
+    }
+});
+
+canvas.addEventListener('mouseup', function(evt) {
+    if (canvas.classList.contains('moving-canvas'))
+    {
+        $('.canvas').removeClass('moving-canvas-active');
+    }
+});
+
+canvas.addEventListener('mouseout', function(evt) {
+    if (canvas.classList.contains('moving-canvas'))
+    {
+        $('.canvas').removeClass('moving-canvas-active');
+    }
+});
+
+//Moving button
+$('.moving-button').click(function() {
+    $('.moving-button').toggleClass('moving-button-active');
+    $('.canvas').toggleClass('moving-canvas');
 });
