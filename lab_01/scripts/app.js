@@ -10,10 +10,12 @@ if (canvas.getContext) {
 
 var tr_y = canvas.height - 100;
 var tr_x = 100;
+var tr_x_grab;
+var tr_y_grab;
 var state;
 
-axes_working(ctx, tr_x, tr_y);
 state = ctx.getImageData(0, 0, canvas.width, canvas.height);
+axes_working(ctx, tr_x, tr_y);
 
 function getCursorPosition(ctx, canvas, event)
 {
@@ -58,7 +60,7 @@ function new_btn(ctx, x, y)
         on_click_coords_b_zoom(ctx, new_btn.id);
     });
     new_btn.addEventListener('mouseout', function() {
-        reset_all(ctx, canvas, dots, state);
+        reset_all(ctx, canvas, dots, state, 0, 0);
     });
     co_btn.appendChild(new_btn);
 }
@@ -69,7 +71,7 @@ function on_click_coords_b_del(ctx, name) {
         if (name === dots[i].x + '-' + dots[i].y)
         {
             dots.splice(i, 1);
-            reset_all(ctx, canvas, dots, state);
+            reset_all(ctx, canvas, dots, state, 0, 0);
         }
     }
     document.getElementById(name).remove();
@@ -166,6 +168,38 @@ canvas.addEventListener('mousedown', function(evt) {
     if (canvas.classList.contains('moving-canvas'))
     {
         $('.canvas').addClass('moving-canvas-active');
+        let tr_coords = getCursorPosition(ctx, canvas, evt);
+        tr_x_grab = tr_coords[0];
+        tr_y_grab = tr_coords[1];
+    }
+});
+
+canvas.addEventListener('mousemove', function(evt) {
+    if (canvas.classList.contains('moving-canvas-active'))
+    {
+        //Шизофрения!
+        let tr_coords = getCursorPosition(ctx, canvas, evt);
+        //console.log(tr_coords[1]);
+        let temp_tr_x = tr_coords[0] - tr_x_grab;
+        let temp_tr_y = tr_coords[1] - tr_y_grab;
+        tr_x += temp_tr_x;
+        tr_y -= temp_tr_y;
+        reset_all(ctx, canvas, dots, state, temp_tr_x, temp_tr_y);
+        //
+        /*let tr_coords = getCursorPosition(ctx, canvas, evt);
+        console.log(tr_coords[1]);
+        let temp_tr_x = tr_coords[0] - tr_x_grab;
+        let temp_tr_y = tr_coords[1] - tr_y_grab;
+        console.log(tr_x_grab, tr_y_grab, temp_tr_x, temp_tr_y, "tr", tr_x, tr_y);
+        reset_all(ctx, canvas, dots, state, temp_tr_x, temp_tr_y);
+        //
+        let tr_coords = getCursorPosition(ctx, canvas, evt);
+        console.log(tr_coords[1]);
+        let temp_tr_x = tr_coords[0] - tr_x_grab;
+        let temp_tr_y = tr_coords[1] - tr_y_grab;
+        tr_x_grab = tr_coords[0];
+        tr_y_grab = tr_coords[1];
+        reset_all(ctx, canvas, dots, state, temp_tr_x, temp_tr_y);*/
     }
 });
 

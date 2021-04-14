@@ -58,12 +58,15 @@ function draw_on_dots(ctx, dots, dots_counter)
     }
 }
 
-function reset_all(ctx, canvas, dots, state)
+function reset_all(ctx, canvas, dots, state, tr_x_1, tr_y_1)
 {
     //ctx.clearRect(-10 * canvas.width, -10 * canvas.height, 10 * canvas.width, 10 * canvas.height);
     ctx.putImageData(state, 0, 0);
     redraw_dots(ctx, dots);
     redraw_tri(ctx, dots);
+    //
+    ctx.translate(tr_x_1, tr_y_1);
+    axes_drawing(ctx, 0, 0);
 }
 
 function check_in_arr(x, y, arr)
@@ -108,7 +111,7 @@ function axes_drawing(ctx, tr_x, tr_y)
 function coords_translator(tr_x, tr_y, x, y)
 {
     x = x - tr_x;
-    y = y - tr_y
+    y = y - tr_y;
     y *= -1;
     return  [x, y];
 }
